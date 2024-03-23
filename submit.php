@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Connect to MySQL database (replace with your database credentials)
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "!@#";
     $dbname = "events";
 
     // Initialize variables to store form data
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Redirect back to form
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 ?>
