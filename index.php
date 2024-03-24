@@ -16,7 +16,19 @@ $sql = " SELECT * FROM event_details;";
 $result = $mysqli->query($sql);
 $mysqli->close();
 ?>
+<?php
+session_start();
 
+// Check if the user is logged in (username is stored in session)
+if (!isset($_SESSION['username'])) {
+    // Redirect the user to the login page if not logged in
+    header("Location: login.html");
+    exit();
+}
+
+// Retrieve the username from the session
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +71,7 @@ $mysqli->close();
             </div>
         </div>
         <!-- Spinner End -->
-
+        
 
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
@@ -76,13 +88,13 @@ $mysqli->close();
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="myProfile.php" class="nav-item nav-link">My Profile</a>
                         <div class="nav-item dropdown">
                             <a href="events.php" class="nav-item nav-link">Events</a>
                             
                         </div>
                         
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="log-in.html" class="nav-item nav-link">Log-in</a>
                     </div>
                     <a href="add-event.html" class="btn btn-primary px-3 d-none d-lg-flex">Add Event</a>
                 </div>
@@ -97,17 +109,11 @@ $mysqli->close();
                 <div class="col-md-6 p-5 mt-lg-5">
                     <h1 class="display-5 animated fadeIn mb-4">Find An <span class="text-primary">Exciting Event</span> With Your Future Family</h1>
                     <p class="animated fadeIn mb-4 pb-2">Looking for a fun event, a group of new people, or an exciting adventure. Find exciting and welcoming community events near you!</p>
-                    <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Get Searching</a>
+                   
                 </div>
                 <div class="col-md-6 animated fadeIn">
-                    <div class="owl-carousel header-carousel">
-                        <div class="owl-carousel-item">
-                            <img class="img-fluid" src="img/carousel-1.jpg" alt="">
-                        </div>
-                        <div class="owl-carousel-item">
-                            <img class="img-fluid" src="img/carousel-2.jpg" alt="">
-                        </div>
-                    </div>
+                    <img class="img-fluid" src="img/com.jpg" alt="">
+
                 </div>
             </div>
         </div>
