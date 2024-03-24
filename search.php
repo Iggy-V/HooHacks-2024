@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Listings</title>
+    <title>Search Results</title>
     <style>
         /* Add your CSS styles here */
         .container {
@@ -49,12 +49,33 @@
 </head>
 <body>
     <div class="container">
-        <h1>Check out this awesome event!</h1>
+        <h1>Search Results</h1>
         <div class="row">
             <?php
-            // Connect to your database
-            include '../config.php';
+            // Include database connection
+            include 'config.php';
 
+            // Retrieve search criteria from the form
+            $keyword = $_GET['keyword'] ?? '';
+            $eventType = $_GET['eventType'] ?? '';
+            $location = $_GET['location'] ?? '';
+
+            // Construct SQL query
+            $sql = "SELECT * FROM event_details WHERE 1";
+
+            if (!empty($keyword)) {
+                $sql .= " AND event_name LIKE '%$keyword%'";
+            }
+
+            if (!empty($eventType)) {
+                $sql .= " AND category = '$eventType'";
+            }
+
+            if (!empty($location)) {
+                $sql .= " AND location = '$location'";
+            }
+
+            // Connect to the database
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             // Check connection
@@ -62,19 +83,13 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            // Retrieve event data from the database
-            // 5 is placeholder for id, figure out how to get ID from index
-            $id = $_GET['id'];
-            $sql = "SELECT * FROM event_details WHERE id = $id";
-        
+            // Perform the search query
             $result = $conn->query($sql);
-
-            $count = 0; // Initialize count for columns
 
             if ($result->num_rows > 0) {
                 // Output data of each row
                 while($row = $result->fetch_assoc()) {
-                    // Display event information in formatted blocks
+                    // Display search results in formatted blocks
                     echo "<div class='col-md-6'>";
                     echo "<div class='event-block'>";
                     echo "<h2>" . $row["event_name"] . "</h2>";
@@ -83,17 +98,12 @@
                     echo "<p><strong>Category:</strong> " . $row["category"] . "</p>"; // Display event category
                     echo "<p><strong>Number of People:</strong> " . $row["num_people"] . "</p>";
                     echo "<p><strong>Description:</strong> " . $row["description"] . "</p>";
-                    echo "<form action='../eventSignUp.php' method='post'>";
+                    echo "<form action='eventSignUp.php' method='post'>";
                     echo "<input type='hidden' name='id' value=". $row["id"] .">"; 
-                    echo "<input type='submit' value='RSPV'>";
+                    echo "<input type='submit' value = 'RSVP'>";
                     echo "</form>";
                     echo "</div>";
                     echo "</div>";
-
-                    // If the current count is odd, close the row and start a new one
-                    if (++$count % 2 == 0) {
-                        echo "</div><div class='row'>";
-                    }
                 }
             } else {
                 echo "<div class='col-md-12'>";
@@ -101,6 +111,7 @@
                 echo "</div>";
             }
 
+            // Close database connection
             $conn->close();
             ?>
         </div>

@@ -82,7 +82,7 @@
                     echo "<p><strong>Description:</strong> " . $row["description"] . "</p>";
                     echo "<form action='eventSignUp.php' method='post'>";
                     echo "<input type='hidden' name='id' value=". $row["id"] .">"; 
-                    echo "<input type='submit' value='Sign Up'>";
+                    echo "<input type='submit' value = 'RSVP'>";
                     echo "</form>";
                     echo "</div>";
                     echo "</div>";
