@@ -2,9 +2,9 @@
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Connect to MySQL database (replace with your database credentials)
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $username = "root";
-    $password = "!@#";
+    $password = "Current-Root-Password";
     $dbname = "events";
 
     // Initialize variables to store form data

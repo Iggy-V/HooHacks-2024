@@ -2,7 +2,7 @@
  
 // Username is root
 $user = 'root';
-$password = '!@#';
+$password = 'Current-Root-Password';
  
 // Database name is geeksforgeeks
 $database = 'events';
@@ -10,9 +10,11 @@ $database = 'events';
 // Server is localhost with
 // port number 3306
 $servername='localhost';
-$mysqli = new mysqli($servername, $user,
-                $password, $database);
- 
+//$mysqli = new mysqli($servername, $user,
+//                $password, $database);
+
+$mysqli = new mysqli('127.0.0.1', 'root', 'Current-Root-Password', 'events');
+
 // Checking for connections
 if ($mysqli->connect_error) {
     die('Connect Error (' .

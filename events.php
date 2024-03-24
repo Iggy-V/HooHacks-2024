@@ -39,7 +39,7 @@
         // Connect to your database
         $servername = "localhost";
         $username = "root";
-        $password = "";
+        $password = "RM17Tt17";
         $dbname = "events";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
