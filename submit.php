@@ -4,37 +4,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Connect to MySQL database (replace with your database credentials)
     include 'config.php';
 
-    // Initialize variables to store form data
-    $eventName = $_POST['event_name'];
-    $location = $_POST['location'];
-    $description = $_POST['description'];
-    $numPeople = $_POST['num_people'];
-
-    // Create connection
+    // Database connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-
+    
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-    // Prepare and bind SQL statement
-    $stmt = $conn->prepare("INSERT INTO event_details (event_name, location, description, num_people) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("sssi", $eventName, $location, $description, $numPeople);
-
-    // Execute SQL statement
-    if ($stmt->execute() === TRUE) {
+    
+    // Retrieve form data
+    $event_name = $_POST['event_name'];
+    $location = $_POST['location'];
+    $event_date = $_POST['event_date'];
+    $category = $_POST['category'];
+    $description = $_POST['description'];
+    $num_people = $_POST['num_people'];
+    
+    // SQL query to insert data into database
+    $sql = "INSERT INTO event_details (event_name, location, event_date, category, description, num_people)
+            VALUES ('$event_name', '$location', '$event_date', '$category', '$description', '$num_people')";
+    
+    if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
-    // Close statement and connection
-    $stmt->close();
+    
     $conn->close();
-
-    // Redirect back to form
-    header("Location: index.php");
-    exit();
 }
-?>
+header("Location: index.php");
+exit();
+    ?>
+    

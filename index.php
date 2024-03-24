@@ -159,7 +159,7 @@ $mysqli->close();
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="subpages\meals.php">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-apartment.png" alt="Icon">
@@ -170,7 +170,7 @@ $mysqli->close();
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="subpages\sports.php">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-villa.png" alt="Icon">
@@ -181,7 +181,7 @@ $mysqli->close();
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="subpages\games.php">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-house.png" alt="Icon">
@@ -192,12 +192,12 @@ $mysqli->close();
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="subpages\other.php">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-housing.png" alt="Icon">
                                 </div>
-                                <h6>External</h6>
+                                <h6>Other</h6>
                                 <span></span>
                             </div>
                         </a>
@@ -222,10 +222,9 @@ $mysqli->close();
 
                         <div class="container">
                             <div class="row g-4">
-                                <?php
+                            <?php
                                 // Connect to your database
                                 include 'config.php';
-
 
                                 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -250,8 +249,9 @@ $mysqli->close();
                                         echo '</div>';
                                         echo '<div class="p-4 pb-0">';
                                         echo '<h5 class="text-primary mb-3">' . $row["event_name"] . '</h5>';
-                                        // echo '<a class="d-block h5 mb-2" href="#">' . $row["event_name"] . '</a>';
                                         echo '<p><i class="fa fa-map-marker-alt text-primary me-2"></i>' . $row["location"] . '</p>';
+                                        echo '<p><i class="fa fa-calendar-alt text-primary me-2"></i>' . $row["event_date"] . '</p>'; // Display event date
+                                        echo '<p><i class="fa fa-tags text-primary me-2"></i>' . $row["category"] . '</p>'; // Display event category
                                         echo '</div>';
                                         echo '<div class="d-flex border-top">';
                                         echo '<small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>' . $row["num_people"] . '</small>';
@@ -266,6 +266,7 @@ $mysqli->close();
 
                                 $conn->close();
                                 ?>
+
                             </div>
                         </div>
                             

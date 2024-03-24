@@ -49,11 +49,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Event Listings</h1>
+        <h1>Having fun together! Standing by eachother!</h1>
         <div class="row">
             <?php
             // Connect to your database
-            include 'config.php';
+            include '../config.php';
 
             $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -63,7 +63,7 @@
             }
 
             // Retrieve event data from the database
-            $sql = "SELECT * FROM event_details";
+            $sql = "SELECT * FROM event_details WHERE category = 'games'";
             $result = $conn->query($sql);
 
             $count = 0; // Initialize count for columns
