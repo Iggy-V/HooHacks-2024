@@ -11,6 +11,18 @@
             margin: 0 auto; /* Center content */
             padding: 20px;
         }
+            .image-container {
+        max-width: 500px; /* Adjust as needed */
+        max-height: 500px; /* Adjust as needed */
+        overflow: hidden;
+        margin-bottom: 10px; /* Add spacing between image and other content */
+    }
+
+    .image-container img {
+        width: 100%; /* Ensure the image fills the container */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensure the image behaves as a block element */
+    }
 
         .event-block {
             border: 1px solid #00B98E;
@@ -98,7 +110,9 @@
                     echo "<p><strong>Category:</strong> " . $row["category"] . "</p>"; // Display event category
                     echo "<p><strong>Number of People:</strong> " . $row["num_people"] . "</p>";
                     echo "<p><strong>Description:</strong> " . $row["description"] . "</p>";
-                    echo "<form action='eventSignUp.php' method='post'>";
+                    echo "<div class = 'image-container'>";
+                    echo "<img src='" . $row["image_url"] . "' alt='Event Image' style='max-width: 100%; height: auto;'>";
+                    echo "</div>";                    echo "<form action='eventSignUp.php' method='post'>";
                     echo "<input type='hidden' name='id' value=". $row["id"] .">"; 
                     echo "<input type='submit' value = 'RSVP'>";
                     echo "</form>";

@@ -64,11 +64,9 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
     <style>
-        /* Add your CSS styles here */
         .container {
-            max-width: 600px; /* Adjust as needed */
-            margin: 0 auto; /* Center content */
-            padding: 20px;
+            margin: 50px auto; /* Center the container horizontally */
+            max-width: 800px; /* Adjust as needed */
         }
 
         .event-block {
@@ -76,58 +74,58 @@ $conn->close();
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
+            display: flex; /* Display as flex container */
+            align-items: center; /* Align items vertically */
         }
 
         .event-block h2 {
-            margin-top: 0;
-            color: #00B98E; /* Change heading color to match primary color */
-            font-size: 24px; /* Increase font size */
-            font-weight: bold; /* Add font weight */
+            color: #00B98E;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px; /* Add margin to separate from details */
         }
 
-        .event-block p {
+        .event-details {
+            flex: 1; /* Occupy remaining space */
+            padding-right: 20px; /* Add padding to separate from image */
+        }
+
+        .event-details p {
             margin-bottom: 10px;
-            color: #333; /* Change paragraph text color */
+            color: #333;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #00B98E; /* Primary color */
-            color: #fff;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        .event-details img {
+            max-width: 50%; /* Limit image width */
+            max-height: 50%; /* Limit image height */
+            height: auto; /* Maintain aspect ratio */
+            float: right; /* Float the image to the right */
+            margin-left: 20px; /* Add margin to separate from text */
         }
-
-        .btn:hover {
-            background-color: #009c73; /* Darker shade for hover effect */
+        .event-image {
+            max-height: 300px; /* Restrict image height */
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Your Profile, <?php echo $user; ?>!</h1>
-    <h2>Events You Have Registered For:</h2>
-    <ul>
-        <?php foreach ($events as $event): ?>
-                    <?php
-                    echo "<container>";
-                    echo "<div class='col-md-6'>";
-                    echo "<div class='event-block'>";
-                    echo "<h2>" . $event["event_name"] . "</h2>";
-                    echo "<p><strong>Location:</strong> " . $event["location"] . "</p>";
-                    echo "<p><strong>Date:</strong> " . $event["event_date"] . "</p>"; // Display event date
-                    echo "<p><strong>Category:</strong> " . $event["category"] . "</p>"; // Display event category
-                    echo "<p><strong>Number of People:</strong> " . $event["num_people"] . "</p>";
-                    echo "<p><strong>Description:</strong> " . $event["description"] . "</p>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</container>";
-                    // If the current count is odd, close the row and start a new one
-                   
-                    ?>
-        <?php endforeach; ?>
-    </ul>
+<h1>Welcome to Your Profile, <?php echo $user; ?>!</h1>
+<h2>Events You Have Registered For:</h2>
+
+<?php foreach ($events as $event): ?>
+    <div class="container">
+        <div class="event-block">
+            <div class="event-details"> <!-- Wrap event details in a separate div -->
+                <h2><?php echo $event["event_name"]; ?></h2>
+                <p><strong>Location:</strong> <?php echo $event["location"]; ?></p>
+                <p><strong>Date:</strong> <?php echo $event["event_date"]; ?></p>
+                <p><strong>Category:</strong> <?php echo $event["category"]; ?></p>
+                <p><strong>Number of People:</strong> <?php echo $event["num_people"]; ?></p>
+                <p><strong>Description:</strong> <?php echo $event["description"]; ?></p>
+            </div>
+            <img src="<?php echo $event["image_url"]; ?>" alt="Event Image" style="max-height: 400px;"> <!-- Move image to the right -->
+        </div>
+    </div>
+<?php endforeach; ?>
+
 </body>
 </html>
