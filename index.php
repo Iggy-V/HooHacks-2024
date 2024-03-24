@@ -22,7 +22,7 @@ session_start();
 // Check if the user is logged in (username is stored in session)
 if (!isset($_SESSION['username'])) {
     // Redirect the user to the login page if not logged in
-    header("Location: login.html");
+    header("Location: log-in.html");
     exit();
 }
 
@@ -76,7 +76,7 @@ $username = $_SESSION['username'];
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                <a href="index.php" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
@@ -87,14 +87,14 @@ $username = $_SESSION['username'];
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="index.php" class="nav-item nav-link active">Home</a>
                         <a href="myProfile.php" class="nav-item nav-link">My Profile</a>
                         <div class="nav-item dropdown">
                             <a href="events.php" class="nav-item nav-link">Events</a>
                             
                         </div>
                         
-                        <a href="log-in.html" class="nav-item nav-link">Log-in</a>
+                        <a href="logout.php" class="nav-item nav-link">Log-Out</a>
                     </div>
                     <a href="add-event.html" class="btn btn-primary px-3 d-none d-lg-flex">Add Event</a>
                 </div>
@@ -123,39 +123,31 @@ $username = $_SESSION['username'];
        
        
        
-        <!-- Search Start -->
-        <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+       <!-- Search Form Start -->
+        <form action="search.php" method="GET" class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
             <div class="container">
                 <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Events</option>
-                                    <option value="1">Property Type 1</option>
-                                    <option value="2">Property Type 2</option>
-                                    <option value="3">Property Type 3</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Location</option>
-                                    <option value="1">Location 1</option>
-                                    <option value="2">Location 2</option>
-                                    <option value="3">Location 3</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="col-md-4">
+                        <input type="text" name="keyword" class="form-control border-0 py-3" placeholder="Search Keyword">
+                    </div>
+                    <div class="col-md-3">
+                        <select name="eventType" class="form-select border-0 py-3">
+                            <option value="">All Events</option>
+                            <option value="Meals">Meals</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Games">Games</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="location" class="form-control border-0 py-3" placeholder="Location">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+                        <button type="submit" class="btn btn-dark border-0 w-100 py-3">Search</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
 
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -244,8 +236,13 @@ $username = $_SESSION['username'];
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
+                                    // Fetch all rows into an array
+                                    $rows = $result->fetch_all(MYSQLI_ASSOC);
+                                    // Reverse the array
+                                    $rows = array_reverse($rows);
+                                
                                     // Output data of each row
-                                    while ($row = $result->fetch_assoc()) {
+                                    foreach ($rows as $row) {
                                         // Display event information in formatted blocks
                                         echo '<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">';
                                         echo '<div class="property-item rounded overflow-hidden">';

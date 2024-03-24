@@ -80,7 +80,10 @@
                     echo "<p><strong>Category:</strong> " . $row["category"] . "</p>"; // Display event category
                     echo "<p><strong>Number of People:</strong> " . $row["num_people"] . "</p>";
                     echo "<p><strong>Description:</strong> " . $row["description"] . "</p>";
-                    echo "<a href='#' class='btn'>Sign Up</a>";
+                    echo "<form action='eventSignUp.php' method='post'>";
+                    echo "<input type='hidden' name='id' value=". $row["id"] .">"; 
+                    echo "<input type='submit' value = 'RSVP'>";
+                    echo "</form>";
                     echo "</div>";
                     echo "</div>";
 

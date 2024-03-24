@@ -11,7 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    
+
+    // Prepare an SQL statement
+    $stmt = $conn->prepare("INSERT INTO event_details (event_name, location, event_date, category, description, num_people) VALUES (?, ?, ?, ?, ?, ?)");
+
+    // Bind parameters
+    $stmt->bind_param("sssssi", $event_name, $location, $event_date, $category, $description, $num_people);
+
     // Retrieve form data
     $event_name = $_POST['event_name'];
     $location = $_POST['location'];
@@ -20,19 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $num_people = $_POST['num_people'];
     
-    // SQL query to insert data into database
-    $sql = "INSERT INTO event_details (event_name, location, event_date, category, description, num_people)
-            VALUES ('$event_name', '$location', '$event_date', '$category', '$description', '$num_people')";
-    
-    if ($conn->query($sql) === TRUE) {
+    // Execute the statement
+    if ($stmt->execute()) {
         echo "New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
     
+    // Close statement and connection
+    $stmt->close();
     $conn->close();
-}
-header("Location: index.php");
-exit();
-    ?>
     
+    // Redirect to index.php
+    header("Location: index.php");
+    exit();
+}
+?>
