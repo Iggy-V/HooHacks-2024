@@ -244,7 +244,7 @@ $mysqli->close();
                                         echo '<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">';
                                         echo '<div class="property-item rounded overflow-hidden">';
                                         echo '<div class="position-relative overflow-hidden">';
-                                        echo '<a href=""><img class="img-fluid" src="img/property-1.jpg" alt=""></a>';
+                                        echo '<a href="subpages/indEvent.php?id=' . $row["id"] . '"><img class="img-fluid" src="img/property-1.jpg" alt=""></a>';
                                         echo '<div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">Event</div>';
                                         echo '</div>';
                                         echo '<div class="p-4 pb-0">';
