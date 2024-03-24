@@ -40,7 +40,7 @@ With these two out of the way, there are many more ideas we would like to pursue
 - Working on the UX.
 - Launching the website / working on an app implementation. 
 
-Set UP:
+## Set UP:
 - For setting up of XAMPP follow this tutorial https://www.freecodecamp.org/news/how-to-get-started-with-php/#:~:text=Click%20on%20the%20%E2%80%9Cenvironment%20variables,ok%20for%20all%20of%20them
 - Set up MySQL databases like this:
 ```sql
@@ -53,6 +53,16 @@ CREATE TABLE IF NOT EXISTS events (
     category VARCHAR(255) NOT NULL,
     num_people INT NOT NULL,
     image_url VARCHAR(255) NOT NULL
+);
+```
+```sql
+CREATE DATABASE IF NOT EXISTS your_database_name;
+CREATE TABLE IF NOT EXISTS your_table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    list_of_numbers VARCHAR(255) NOT NULL,
+
 );
 ```
   
