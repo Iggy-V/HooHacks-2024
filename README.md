@@ -1,5 +1,6 @@
-# HooHacks-2024
+# WE DO THAT - HooHacks-2024
 Project for HooHacks 2024
+
 
 ## Inspiration
 For many years now, we feel like there has been a drift away from community and lasting relationships. We think things like Social Media, COVID-19, and political polarization have only furthered the divide between people.  Even our recent graduate friends are experiencing how hard it is to build friendships outside of the workplace.  This web application solves this issue. 
@@ -39,6 +40,32 @@ With these two out of the way, there are many more ideas we would like to pursue
 - Working on the UX.
 - Launching the website / working on an app implementation. 
 
+## Set UP:
+- For setting up of XAMPP follow this tutorial https://www.freecodecamp.org/news/how-to-get-started-with-php/#:~:text=Click%20on%20the%20%E2%80%9Cenvironment%20variables,ok%20for%20all%20of%20them
+- Set up MySQL databases like this:
+```sql
+CREATE DATABASE IF NOT EXISTS your_database_name;
+CREATE TABLE IF NOT EXISTS events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    event_name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    event_date DATE NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    num_people INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL
+);
+```
+```sql
+CREATE DATABASE IF NOT EXISTS your_database_name;
+CREATE TABLE IF NOT EXISTS your_table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    list_of_numbers VARCHAR(255) NOT NULL,
+
+);
+```
+  
 Sources:
 
 - https://www.free-css.com/free-css-templates/page295/makaan
