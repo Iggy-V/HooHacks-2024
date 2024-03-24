@@ -22,7 +22,7 @@ session_start();
 // Check if the user is logged in (username is stored in session)
 if (!isset($_SESSION['username'])) {
     // Redirect the user to the login page if not logged in
-    header("Location: login.html");
+    header("Location: log-in.html");
     exit();
 }
 
@@ -94,7 +94,7 @@ $username = $_SESSION['username'];
                             
                         </div>
                         
-                        <a href="log-in.html" class="nav-item nav-link">Log-in</a>
+                        <a href="logout.php" class="nav-item nav-link">Log-Out</a>
                     </div>
                     <a href="add-event.html" class="btn btn-primary px-3 d-none d-lg-flex">Add Event</a>
                 </div>

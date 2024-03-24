@@ -36,12 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
             exit();
         } else {
-            // Incorrect password, redirect back to login.html
+            // Incorrect password, redirect back to log-in.html
             header("Location: log-in.html");
             exit();
         }
     } else {
-        // User not found, redirect back to login.html
+        // User not found, redirect back to log-in.html
         header("Location: log-in.html");
         exit();
     }
